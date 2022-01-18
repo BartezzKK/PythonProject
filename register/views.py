@@ -12,3 +12,6 @@ def register(response):
         form = RegUser()
 
     return render(response, "registration/register.html", {"form":form})
+
+def loginPage():
+    return redirect('registration/login')
