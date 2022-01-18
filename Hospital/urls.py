@@ -3,6 +3,7 @@ from . import views
 
 #przekierowania do odpowiednich funkcji
 urlpatterns = [
-    path('home/', views.home),
-    path('myappointment/', views.appointment)
+    path('home/', views.home, name='home'),
+    path('myappointment/', views.appointment),
+    
 ]

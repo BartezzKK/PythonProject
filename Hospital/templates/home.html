@@ -1,25 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testowa strona domowa</title>
-</head>
-<body>
-    <div id="topbar">
-        {% block topbar %}
-            <ul>
-                <li>Strona główna</li>
-                <li>Moje wizyty</li>
-            </ul>
-        {% endblock %}
-    </div>
-    <div id="content">
-        {% block content %}
-        {% endblock %}
-    </div>
-    <h1>nie wiem czy korzystamy z głównego szablonu aplikacji (masterpage/basepage) jeśli nie to to co powyżej można wywalić</h1>
-    <h1>jakiś navbar/navmenu z pozycjami strona główna i moje wizyty</h1>
-</body>
-</html>
+{% extends 'base.html'%}
+{% block content %}
+<h1>test home z autentykacją tylko widać</h1>
+{% endblock %}
