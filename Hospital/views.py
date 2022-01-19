@@ -1,6 +1,7 @@
 from email import message
 from multiprocessing import context
 from django.shortcuts import render, redirect
+from .forms import DoctorForm
 
 
 
@@ -12,3 +13,13 @@ def appointment(request):
         return render(request, 'myappointment.html', {})
     else:
         return redirect('/home')
+
+def addDoctorForm(request):
+    form = DoctorForm()
+    if request.method == 'POST':
+        print(request.POST)
+        form= DoctorForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context = {'form':form}
+    return render(request, 'addDoctor.html', context)
