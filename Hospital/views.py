@@ -1,16 +1,39 @@
 from email import message
 from multiprocessing import context
+from random import sample
 from django.shortcuts import render, redirect
-from .forms import DoctorForm
+
+from .models import Appointment, Doctor, Opinion
+from .forms import AppointmentForm, DoctorForm, OpinionForm
 
 
 
 def home(request):
-    return render(request, 'home.html')
+    doctors =list(Doctor.objects.all())
+    numberOfDoctors = len(doctors)
+    if numberOfDoctors >= 3:
+        doctors_3 = sample(doctors,3)
+    else:
+        doctors_3 = sample(doctors, numberOfDoctors)
+    if request.user.is_authenticated:
+        return render(request, 'home.html', {'doctors':doctors_3})
+    else:
+        return render(request, 'home_unauthenticated.html', {'doctors':doctors_3})
+        
+
+def opinions(request):
+    return render(request, 'opinions.html')
+
+def visits(request):
+    return render(request, 'visits.html')
+
+def contact(request):
+    return render(request, 'contact.html')
 
 def appointment(request):
     if request.user.is_authenticated:
-        return render(request, 'myappointment.html', {})
+        appointments = Appointment.objects.all()
+        return render(request, 'myappointment.html', {'appointments':appointments})
     else:
         return redirect('/home')
 
@@ -19,7 +42,36 @@ def addDoctorForm(request):
     if request.method == 'POST':
         print(request.POST)
         form= DoctorForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and request.user.is_superuser:
             form.save()
     context = {'form':form}
-    return render(request, 'addDoctor.html', context)
+    if(request.user.is_superuser):
+        return render(request, 'addDoctor.html', context)
+    else:
+        return redirect('/home')
+
+def addOpinionForm(request):
+    form = OpinionForm()
+    opinions = Opinion.objects.all()
+    if request.method == 'POST':
+        print(request.POST)
+        form = OpinionForm(request.POST)
+        if form.is_valid() and request.user.is_authenticated:
+            obje = form.save(commit=False)
+            obje.created_by = request.user
+            form.save()
+    context = {'form':form, 'opinions': opinions}
+    return render(request, 'opinions.html', context)
+
+def addAppointment(request):
+    form = AppointmentForm()
+    if request.method == 'POST':
+        print(request.POST)
+        form = AppointmentForm(request.POST, request.FILES)
+        if form.is_valid() and request.user.is_authenticated:
+            obje = form.save(commit=False)
+            obje.created_by = request.user
+            obje.status = 'OczekujeNaAkceptacje'
+            form.save()
+    context = {'form':form}
+    return render(request, 'addAppointment.html', context)

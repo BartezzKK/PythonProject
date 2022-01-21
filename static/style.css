@@ -1,4 +1,4 @@
-/* width */
+hero--opinie/* width */
 ::-webkit-scrollbar {
   width: 20px;
 }
@@ -39,7 +39,7 @@ body {
   width: 190px;
 }
 nav {
-  height: 10vh;
+  height: 8vh;
   background-color: #8a0bde;
   display: flex;
   justify-content: space-between;
@@ -52,7 +52,7 @@ ul.navbar--links {
   justify-content: space-around;
   list-style: none;
   width: 40%;
-  margin-top: 15px;
+  /* background-color: pink; */
 }
 ul li a {
   text-decoration: none;
@@ -92,11 +92,12 @@ ul li a:hover:after {
   text-decoration: none;
   color: black;
 }
-
+/* main {
+  flex: 1;
+} */
 section.hero {
   width: 80vw;
   margin: 0 auto;
-  height: 80vh;
 }
 .hero--introduction {
   margin-top: 4rem;
@@ -264,14 +265,14 @@ section.callADoctor {
   padding: 10px 0;
   width: 400px;
   height: 500px;
-  background-color: rgba(0, 0, 0, 1);
+  background-color: white;
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 3px solid #fbe630;
+  box-shadow: 0 10px 5px 3px rgba(0, 0, 0, 0.3);
 }
 .contact--container form h2 {
-  color: #fbe630;
+  color: black;
 }
 .form--box {
   height: 45px;
@@ -289,7 +290,7 @@ section.callADoctor {
   font-size: 20px;
   background: none;
   border: none;
-  color: white;
+  color: black;
   outline: none;
 }
 .form--box label {
@@ -299,8 +300,8 @@ section.callADoctor {
   left: 0;
   padding-top: 20px;
   pointer-events: none;
-  border-bottom: 3px solid #fbe630;
-  color: white;
+  border-bottom: 3px solid #b26fdf;
+  color: black;
 }
 .form--box span {
   position: absolute;
@@ -311,7 +312,7 @@ section.callADoctor {
 .form--box input:valid + .form-label .form-content {
   transform: translateY(-20px);
   font-size: 15px;
-  color: #fbe630;
+  color: #b26fdf;
 }
 .form--box__text {
   height: 200px;
@@ -324,7 +325,7 @@ section.callADoctor {
   width: 100%;
   height: 100%;
   left: 0;
-  color: white;
+  color: black;
 
   font-size: 20px;
   background: none;
@@ -338,8 +339,8 @@ section.callADoctor {
   position: absolute;
   padding-top: 120px;
   pointer-events: none;
-  border-bottom: 3px solid #fbe630;
-  color: white;
+  border-bottom: 3px solid #b26fdf;
+  color: black;
 }
 .form--box__text span {
   position: absolute;
@@ -350,5 +351,33 @@ section.callADoctor {
 .form--box__text input:valid + .form-label .form-content {
   transform: translateY(-80px);
   font-size: 15px;
-  color: #fbe630;
+  color: #b26fdf;
+}
+.hero--opinions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 2rem 3rem;
+  flex-direction: column;
+  padding-bottom: 2rem;
+}
+.title-opinions img {
+  position: relative;
+  width: 300px;
+  left: -30px;
+  bottom: 10px;
+}
+.opinion--item {
+  box-shadow: 0 10px 15px 1px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  min-height: 150px;
+  border-radius: 2rem;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
+}
+.opinion--item h2 {
+  margin: 10px;
 }

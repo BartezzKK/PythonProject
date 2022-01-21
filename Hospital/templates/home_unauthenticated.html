@@ -1,4 +1,4 @@
-{% extends 'base.html'%} {%load static%} {% block content %}
+{% extends 'base_unauthenticated.html'%} {%load static%} {% block content %}
 <main>
   <section class="hero">
     <div class="hero--introduction">
@@ -33,7 +33,7 @@
             <p>
               
             </p>
-            <a href="/addAppointment"><button class="hero--select--button">skonsultuj się!</button></a> 
+            <button class="hero--select--button">skonsultuj się!</button>
           </div>
         </div>
         {%endfor%}
@@ -58,5 +58,11 @@
       </div>
     </div>
   </section>
+  <footer>
+    <div class="footer-chat-ico">
+      <img src="{%static '/img/contact.png'%}" alt="contact" />
+    </div>
+    <span class="sign">made with ❤️ by Adam && Bartek</span>
+  </footer>
 </main>
 {% endblock %}
